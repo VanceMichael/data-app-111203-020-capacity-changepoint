@@ -9,11 +9,15 @@
 | `observation_id` | str | 必填 |
 | `asset` | str | 必填 |
 | `model` | str | 必填 |
-| `day` | int | 允许空值，空值不是零 |
+| `day` | int | 必填 |
 | `throughput` | float | 必填 |
-| `hours` | float | 允许空值，空值不是零 |
-| `temperature` | float | 允许空值，空值不是零 |
-| `service_day` | int | 允许空值，空值不是零 |
-| `visible_at` | int | 允许空值，空值不是零 |
+| `hours` | float | 必填 |
+| `temperature` | float | 必填 |
+| `service_day` | int | 必填 |
+| `visible_at` | int | 必填 |
 
 时间字段 day、week、tick、hour、minute、cycle、start_day、reported_day、known_at、visible_at、opened、observed 均以各字段名所述的相对时间单位表示整数；不同字段并不必然代表同一种时间。缺少的登记码与浓度等信息保持为空。示例只表达产品数据结构，不能代替实际调查资料。
+
+## 业务字段语义
+
+throughput 是运行时每小时产能，hours 为当天实际运行小时。停机日 hours=0，但并不将 throughput 记为零。temperature 为摄氏度，service_day=-1 表示无维护记录；visible_at 为观测可用日。
